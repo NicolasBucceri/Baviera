@@ -95,7 +95,7 @@ import { onMounted, onBeforeUnmount, nextTick } from "vue";
 
 import ADVANCE from "@/assets/Texturas/PVC/ADVANCE.png";
 import EFFICIENT from "@/assets/Texturas/PVC/EFFICIENT.png";
-import JUMBO from "@/assets/Texturas/PVC/JUMBO.png";
+import JUMBO from "@/assets/Texturas/PVC/jUMBO.png";
 import PRIME from "@/assets/Texturas/PVC/PRIME.png";
 
 import DOMO6060RTP from "@/assets/Texturas/Aluminio/DOMO-60-RTP.png";
