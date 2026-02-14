@@ -1,52 +1,66 @@
 <template>
-    <section class="brands-section" ref="sectionRef" :class="{ 'is-visible': isVisible }" id="marcas"
-        aria-label="Marcas con las que trabajamos">
-        <div class="brands-container">
+  <section
+    class="brands-section"
+    ref="sectionRef"
+    :class="{ 'is-visible': isVisible }"
+    id="marcas"
+    aria-label="Marcas con las que trabajamos"
+  >
+    <div class="brands-container">
+      <!-- TEXTO IZQUIERDA -->
+      <div class="brands-text">
+        <span class="brands-eyebrow">Marcas con las que trabajamos</span>
 
-            <!-- TEXTO IZQUIERDA -->
-            <div class="brands-text">
-                <span class="brands-eyebrow">
-                    Marcas con las que trabajamos
-                </span>
+        <h2 class="brands-title">
+          Calidad que marca<br />
+          la diferencia
+        </h2>
 
-                <h2 class="brands-title">
-                    Calidad que marca<br />
-                    la diferencia
-                </h2>
+        <p class="brands-copy">
+          Trabajamos con proveedores líderes en perfiles, herrajes y soluciones para aberturas,
+          asegurando terminaciones duraderas y de alta performance.
+        </p>
+      </div>
 
-                <p class="brands-copy">
-                    Trabajamos con proveedores líderes en herrajes, tableros y soluciones
-                    para mobiliario, asegurando terminaciones duraderas y de alta performance.
-                </p>
-            </div>
+      <!-- LÍNEA DIVISORA -->
+      <div class="brands-divider" aria-hidden="true"></div>
 
-            <!-- LÍNEA DIVISORA -->
-            <div class="brands-divider"></div>
-
-            <!-- LOGOS DERECHA -->
-            <div class="brands-logos">
-                <img v-for="(brand, i) in marcas" :key="i" class="brand-logo"
-                    :style="{ transitionDelay: `${i * 80}ms` }" :src="brand.logo" :alt="brand.nombre" loading="lazy"
-                    decoding="async" />
-            </div>
-
-
-        </div>
-    </section>
+      <!-- LOGOS DERECHA (solo logo, sin contenedor, sin texto) -->
+      <div class="brands-logos" aria-label="Logos de marcas">
+        <img
+          v-for="(brand, i) in marcas"
+          :key="brand.nombre"
+          class="brand-logo"
+          :style="{ transitionDelay: `${i * 80}ms` }"
+          :src="brand.logo"
+          :alt="brand.nombre"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
-import veka from "@/assets/Marcas/VEKA.png";
+/* ✅ IMPORTS */
+import VEKA from "@/assets/Marcas/VEKA.png";
+import Rehau from "@/assets/Marcas/Rehau.png";
+import Deceuninck from "@/assets/Marcas/Deceuninck.png";
+import Muchtek from "@/assets/Marcas/muchtek.png";
+import AGB from "@/assets/Marcas/AGB.png";
+import Schuco from "@/assets/Marcas/Schuco.svg";
 
+/* ✅ DATA */
 const marcas = [
-    { nombre: "Veka 1", logo: veka },
-    { nombre: "Veka 2", logo: veka },
-    { nombre: "Veka 3", logo: veka },
-    { nombre: "Veka 4", logo: veka },
-    { nombre: "Veka 5", logo: veka },
-    { nombre: "Veka 6", logo: veka },
+  { nombre: "VEKA", logo: VEKA },
+  { nombre: "REHAU", logo: Rehau },
+  { nombre: "Deceuninck", logo: Deceuninck },
+  { nombre: "Muchtek", logo: Muchtek },
+  { nombre: "AGB", logo: AGB },
+  { nombre: "Schüco", logo: Schuco },
 ];
 
 const sectionRef = ref(null);
@@ -54,28 +68,30 @@ const isVisible = ref(false);
 let observer = null;
 
 onMounted(() => {
-    observer = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.isIntersecting) {
-                isVisible.value = true;
-                observer.disconnect();
-            }
-        },
-        { threshold: 0.25 }
-    );
+  observer = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        isVisible.value = true;
+        observer?.disconnect();
+      }
+    },
+    { threshold: 0.25 }
+  );
 
-    if (sectionRef.value) observer.observe(sectionRef.value);
+  if (sectionRef.value) observer.observe(sectionRef.value);
 });
 
 onBeforeUnmount(() => {
-    if (observer) observer.disconnect();
+  observer?.disconnect();
+  observer = null;
 });
 </script>
 
 <style scoped>
 /* ===============================
-   BAVIERA — MARCAS (Clean / No Card)
-   - Tipografía unificada "Baviera"
+   BAVIERA — MARCAS (solo logos)
+   - Mismo fondo Baviera
+   - Sin cards / sin captions
    =============================== */
 
 .brands-section {
@@ -84,20 +100,13 @@ onBeforeUnmount(() => {
   --ink: #0f1115;
   --muted: rgba(15, 17, 21, 0.65);
   --muted2: rgba(15, 17, 21, 0.52);
-  --stroke: rgba(15, 17, 21, 0.10);
-  --stroke2: rgba(15, 17, 21, 0.14);
 
   /* Acento Alemania */
   --de-red: #d11f2a;
   --de-black: #111111;
   --de-gold: #d6b25e;
 
-  /* ✅ TIPOGRAFÍA BAVIERA (tokens) */
-  --font-baviera: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-baviera-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-
-  /* ✅ aplica tipografía a TODO el módulo */
-  font-family: var(--font-baviera);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -110,7 +119,7 @@ onBeforeUnmount(() => {
   isolation: isolate;
 }
 
-/* Fondo ambiental sutil */
+/* Fondo ambiental sutil (igual que venías usando) */
 .brands-section::before {
   content: "";
   position: absolute;
@@ -168,7 +177,6 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 0.65rem;
 
-  /* ✅ hereda font-family, solo ajusto estilo */
   font-size: 0.78rem;
   letter-spacing: 0.30em;
   text-transform: uppercase;
@@ -187,20 +195,15 @@ onBeforeUnmount(() => {
 
 .brands-title {
   margin-top: 1.05rem;
-
-  /* ✅ display */
-  font-family: var(--font-baviera-display);
   font-size: clamp(2.1rem, 3.1vw, 2.9rem);
-  font-weight: 720;             /* más "Baviera": firme, premium */
+  font-weight: 720;
   line-height: 1.06;
   letter-spacing: -0.03em;
-  color: var(--ink);
 }
 
 .brands-copy {
   margin-top: 1.2rem;
-  max-width: 30rem;
-
+  max-width: 34rem;
   font-size: 0.98rem;
   line-height: 1.75;
   color: var(--muted);
@@ -225,12 +228,13 @@ onBeforeUnmount(() => {
   transition-delay: 0.16s;
 }
 
-/* ================= LOGOS (SIN CONTENEDOR) ================= */
+/* ================= LOGOS (SOLO IMG) ================= */
 
 .brands-logos {
+  --min: 170px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 2rem 2.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
+  gap: 2.2rem 2.8rem;
   align-items: center;
   justify-items: center;
 
@@ -245,18 +249,21 @@ onBeforeUnmount(() => {
   transition-delay: 0.22s;
 }
 
+/* ✅ Solo el logo, sin card */
 .brand-logo {
-  width: 100%;
-  max-width: 280px;
-  max-height: 92px;
+  width: min(260px, 100%);
+  height: 74px;              /* altura uniforme */
   object-fit: contain;
+  object-position: center;
 
+  /* entrada */
   opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity 0.65s ease,
-    transform 0.65s ease,
-    filter 0.35s ease;
+  transform: translateY(14px);
+  transition: opacity 0.65s ease, transform 0.65s ease, filter 0.25s ease;
+  will-change: transform, opacity;
+
+  /* look */
+  filter: saturate(1.02) contrast(1.05);
 }
 
 .brands-section.is-visible .brand-logo {
@@ -264,9 +271,10 @@ onBeforeUnmount(() => {
   transform: translateY(0);
 }
 
+/* hover sutil (sin contenedor) */
 .brand-logo:hover {
   transform: translateY(-4px) scale(1.03);
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.14));
+  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.14)) saturate(1.08) contrast(1.08);
 }
 
 /* ================= RESPONSIVE ================= */
@@ -288,18 +296,34 @@ onBeforeUnmount(() => {
     margin-left: auto;
     margin-right: auto;
   }
+
+  .brands-logos {
+    --min: 160px;
+    transform: translateY(10px);
+  }
 }
 
 @media (max-width: 600px) {
   .brands-logos {
     grid-template-columns: 1fr;
-    gap: 1.35rem;
+    gap: 1.4rem;
   }
 
   .brand-logo {
-    max-width: 240px;
-    max-height: 86px;
+    height: 66px;
+    width: min(240px, 100%);
   }
 }
 
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .brands-text,
+  .brands-divider,
+  .brands-logos,
+  .brand-logo {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
 </style>

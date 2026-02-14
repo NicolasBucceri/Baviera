@@ -2,7 +2,7 @@
   <section class="hero-baviera" id="inicio">
     <!-- CARRUSEL SOLO DE FONDO -->
     <div id="heroCarouselBaviera" class="carousel slide carousel-fade hero-bg" data-bs-ride="carousel"
-      data-bs-interval="3800" data-bs-pause="false" data-bs-touch="true">
+      data-bs-interval="2800" data-bs-pause="false" data-bs-touch="true">
       <div class="carousel-inner">
         <div class="carousel-item active">
           <div class="hero-slide" :style="heroBgStyle(banner1)">
@@ -41,6 +41,20 @@
 
         <div class="carousel-item">
           <div class="hero-slide" :style="heroBgStyle(banner6)">
+            <div class="hero-overlay"></div>
+            <div class="hero-vignette"></div>
+          </div>
+        </div>
+
+                <div class="carousel-item">
+          <div class="hero-slide" :style="heroBgStyle(banner7)">
+            <div class="hero-overlay"></div>
+            <div class="hero-vignette"></div>
+          </div>
+        </div>
+
+                <div class="carousel-item">
+          <div class="hero-slide" :style="heroBgStyle(banner8)">
             <div class="hero-overlay"></div>
             <div class="hero-vignette"></div>
           </div>
@@ -93,12 +107,14 @@
 
 <script setup>
 import { onMounted, onBeforeUnmount, ref } from "vue";
-import banner1 from "@/assets/ImgCarruselHero/Img1.jpeg";
-import banner2 from "@/assets/ImgCarruselHero/Img2.jpeg";
-import banner3 from "@/assets/ImgCarruselHero/Img3.jpeg";
-import banner4 from "@/assets/ImgCarruselHero/Img4.jpeg";
-import banner5 from "@/assets/ImgCarruselHero/Img5.jpeg";
-import banner6 from "@/assets/ImgCarruselHero/Img6.jpeg";
+import banner1 from "@/assets/ImgCarruselHero/Img1.png";
+import banner2 from "@/assets/ImgCarruselHero/Img2.png";
+import banner3 from "@/assets/ImgCarruselHero/Img3.png";
+import banner4 from "@/assets/ImgCarruselHero/Img4.png";
+import banner5 from "@/assets/ImgCarruselHero/Img5.png";
+import banner6 from "@/assets/ImgCarruselHero/Img6.png";
+import banner7 from "@/assets/ImgCarruselHero/Img7.png";
+import banner8 from "@/assets/ImgCarruselHero/Img8.png";
 
 const irASeccion = (id) => {
   const el = document.getElementById(id);

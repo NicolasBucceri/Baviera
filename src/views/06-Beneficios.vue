@@ -1,6 +1,6 @@
 <template>
   <section
-    class="baviera-benefits baviera-logo--black"
+    class="baviera-benefits baviera-logo--bw"
     id="beneficios"
     aria-label="Beneficios Baviera"
     data-animate-root
@@ -8,7 +8,7 @@
     <div class="baviera-benefits__container">
       <!-- Header -->
       <header class="baviera-benefits__head" data-animate="head">
-        <h2 class="baviera-title">Beneficios</h2>
+        <h2 class="baviera-title">Beneficios de trabajar con nosotros</h2>
 
         <p class="baviera-subtitle">
           Diseño, precisión y acompañamiento real en cada etapa del proyecto.
@@ -118,7 +118,7 @@ onBeforeUnmount(() => {
   /* ✅ Fondo: visible + oscurecido apenas */
   background:
     linear-gradient(rgba(15, 17, 21, 0.55), rgba(15, 17, 21, 0.55)),
-    url("@/assets/Img2.jpeg") center / cover no-repeat;
+    url("@/assets/Img1.jpeg") center / cover no-repeat;
 
   color: #fff;
 
@@ -136,6 +136,7 @@ onBeforeUnmount(() => {
   --gold: #d6b25e;
   --white: #ffffff;
   --black: #000000;
+  --red: #d11f2a;
 }
 
 .baviera-benefits__container {
@@ -155,6 +156,7 @@ onBeforeUnmount(() => {
 
 .baviera-title {
   margin: 0;
+  text-transform: uppercase;
   font-weight: 900;
   letter-spacing: 0.3px;
   font-size: clamp(2.35rem, 4vw, 3rem);
@@ -290,6 +292,11 @@ onBeforeUnmount(() => {
 /* Dorado Baviera */
 .baviera-logo--gold .benefit__logo {
   background: linear-gradient(180deg, rgba(214, 178, 94, 1), rgba(214, 178, 94, 1));
+}
+
+/* Rojo Baviera */
+.baviera-logo--red .benefit__logo {
+  background-color: var(--red); /* #d11f2a */
 }
 
 /* ================= RESPONSIVE ================= */

@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import Home from "@/views/01-Home.vue";
 import Galeria from "@/views/Galeria.vue";
+import Empresa from "@/views/Empresa.vue";
+import Contacto from "@/views/Contacto.vue";
 
 const NAV_OFFSET = 80;
 
@@ -10,6 +12,8 @@ const router = createRouter({
   routes: [
     { path: "/", name: "Home", component: Home },
     { path: "/Galeria", name: "Galeria", component: Galeria },
+    { path: "/Empresa", name: "Empresa", component: Empresa },
+    { path: "/Contacto", name: "Contacto", component: Contacto },
     { path: "/:pathMatch(.*)*", redirect: "/" },
   ],
   scrollBehavior(to) {

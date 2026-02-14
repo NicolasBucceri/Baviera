@@ -201,7 +201,7 @@ const pvcCutSrcFinal = computed(() => {
 
 onMounted(() => {
   const fallback = colors.value?.[0]?.key || "";
-  selectedKey.value = colors.value.some((c) => c.key === "blanco") ? "blanco" : fallback;
+  selectedKey.value = colors.value.some((c) => c.key === "sapelli") ? "sapelli" : fallback;
 
   // ===== Animaciones on-scroll (IntersectionObserver) =====
   const root = document.querySelector("[data-animate-root]");
@@ -212,7 +212,7 @@ onMounted(() => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         root.classList.add("is-in");
-        observer.disconnect(); // entra una vez y queda
+        observer.disconnect();
       });
     },
     { threshold: 0.18 }

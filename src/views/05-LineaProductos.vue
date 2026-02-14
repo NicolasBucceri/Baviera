@@ -18,40 +18,45 @@
 
       <!-- TABS -->
       <ul class="nav baviera-tabs" id="lineasTab" role="tablist" aria-label="Líneas Baviera" data-animate="tabs">
+        <!-- ALUMINIO (ACTIVO) -->
         <li class="nav-item" role="presentation">
-          <button
-            class="nav-link active"
-            id="pvc-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#pvc-pane"
-            type="button"
-            role="tab"
-            aria-controls="pvc-pane"
-            aria-selected="true"
-          >
-            PVC
+          <button class="nav-link active" id="aluminio-tab" data-bs-toggle="tab" data-bs-target="#aluminio-pane"
+            type="button" role="tab" aria-controls="aluminio-pane" aria-selected="true">
+            Aluminio
           </button>
         </li>
 
+        <!-- PVC (SEGUNDO) -->
         <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            id="aluminio-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#aluminio-pane"
-            type="button"
-            role="tab"
-            aria-controls="aluminio-pane"
-            aria-selected="false"
-          >
-            Aluminio
+          <button class="nav-link" id="pvc-tab" data-bs-toggle="tab" data-bs-target="#pvc-pane" type="button" role="tab"
+            aria-controls="pvc-pane" aria-selected="false">
+            PVC
           </button>
         </li>
       </ul>
 
       <div class="tab-content baviera-tabcontent" id="lineasTabContent" data-animate="content">
+        <!-- ALUMINIO (ACTIVO) -->
+        <div class="tab-pane fade show active" id="aluminio-pane" role="tabpanel" aria-labelledby="aluminio-tab"
+          tabindex="0">
+          <div class="row g-4 baviera-cards">
+            <div v-for="(item, i) in aluminioItems" :key="'al-' + i" class="col-12 col-md-6 col-lg-3">
+              <article class="baviera-card baviera-card--neo" data-animate="card" :style="{ '--stagger': i }">
+                <div class="baviera-card__media2">
+                  <img :src="item.img" :alt="item.nombre" loading="lazy" decoding="async" />
+                </div>
+
+                <div class="baviera-card__body text-center">
+                  <h3 class="baviera-card__title">{{ item.nombre }}</h3>
+                  <p class="baviera-card__text">{{ item.desc }}</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
         <!-- PVC -->
-        <div class="tab-pane fade show active" id="pvc-pane" role="tabpanel" aria-labelledby="pvc-tab" tabindex="0">
+        <div class="tab-pane fade" id="pvc-pane" role="tabpanel" aria-labelledby="pvc-tab" tabindex="0">
           <div class="row g-4 baviera-cards">
             <div v-for="(item, i) in pvcItems" :key="'pvc-' + i" class="col-12 col-md-6 col-lg-3">
               <article class="baviera-card baviera-card--neo" data-animate="card" :style="{ '--stagger': i }">
@@ -68,23 +73,6 @@
           </div>
         </div>
 
-        <!-- ALUMINIO -->
-        <div class="tab-pane fade" id="aluminio-pane" role="tabpanel" aria-labelledby="aluminio-tab" tabindex="0">
-          <div class="row g-4 baviera-cards">
-            <div v-for="(item, i) in aluminioItems" :key="'al-' + i" class="col-12 col-md-6 col-lg-3">
-              <article class="baviera-card baviera-card--neo" data-animate="card" :style="{ '--stagger': i }">
-                <div class="baviera-card__media2">
-                  <img :src="item.img" :alt="item.nombre" loading="lazy" decoding="async" />
-                </div>
-
-                <div class="baviera-card__body text-center">
-                  <h3 class="baviera-card__title">{{ item.nombre }}</h3>
-                  <p class="baviera-card__text">{{ item.desc }}</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -98,8 +86,10 @@ import EFFICIENT from "@/assets/Texturas/PVC/EFFICIENT.png";
 import JUMBO from "@/assets/Texturas/PVC/jUMBO.png";
 import PRIME from "@/assets/Texturas/PVC/PRIME.png";
 
-import DOMO6060RTP from "@/assets/Texturas/Aluminio/DOMO-60-RTP.png";
-import DOMO114 from "@/assets/Texturas/Aluminio/DOMO114.png";
+import A40 from "@/assets/Texturas/Aluminio/A40.png";
+import A30 from "@/assets/Texturas/Aluminio/A30.png";
+import VESTA from "@/assets/Texturas/Aluminio/VESTA.png";
+import MODENA from "@/assets/Texturas/Aluminio/MODENA.png";
 
 const pvcItems = [
   {
@@ -126,13 +116,21 @@ const pvcItems = [
 
 const aluminioItems = [
   {
-    nombre: "DOMO 60 RTP",
-    img: DOMO6060RTP,
+    nombre: "A40",
+    img: A40,
     desc: "Estética limpia y gran resistencia. Ideal para fachadas modernas.",
   },
   {
-    nombre: "DOMO 114",
-    img: DOMO114,
+    nombre: "A30",
+    img: A30,
+    desc: "Perfil con presencia y performance. Para proyectos que piden durabilidad.",
+  },  {
+    nombre: "VESTA",
+    img: VESTA,
+    desc: "Perfil con presencia y performance. Para proyectos que piden durabilidad.",
+  },  {
+    nombre: "MODENA",
+    img: MODENA,
     desc: "Perfil con presencia y performance. Para proyectos que piden durabilidad.",
   },
 ];
@@ -148,7 +146,7 @@ const observeLineasSection = () => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         root.classList.add("is-in");
-        observer?.disconnect(); // entra una vez y queda
+        observer?.disconnect(); 
       });
     },
     { threshold: 0.18 }
@@ -212,6 +210,7 @@ onBeforeUnmount(() => {
 
 .baviera-title {
   margin: 0;
+  text-transform: uppercase;
   font-weight: 900;
   letter-spacing: -0.02em;
   line-height: 1.06;
@@ -369,7 +368,7 @@ onBeforeUnmount(() => {
 .baviera-card--neo .baviera-card__media2 img {
   width: 100%;
   height: 100%;
-  margin-top: -20%;
+  margin-top: -10%;
   object-fit: contain;
   object-position: center;
   filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.16));
@@ -442,7 +441,7 @@ onBeforeUnmount(() => {
    - Head + Tabs + Content
    - Cards con stagger
    ========================================================= */
-[data-animate-root] [data-animate]{
+[data-animate-root] [data-animate] {
   opacity: 0;
   filter: blur(2px);
   transform: translateY(14px);
@@ -453,18 +452,18 @@ onBeforeUnmount(() => {
   will-change: transform, opacity, filter;
 }
 
-[data-animate-root] [data-animate="tabs"]{
+[data-animate-root] [data-animate="tabs"] {
   transform: translateY(10px);
   transition-delay: .08s;
 }
 
-[data-animate-root] [data-animate="content"]{
+[data-animate-root] [data-animate="content"] {
   transform: translateY(14px);
   transition-delay: .12s;
 }
 
 /* Cards (stagger) */
-[data-animate-root] [data-animate="card"]{
+[data-animate-root] [data-animate="card"] {
   opacity: 0;
   filter: blur(2px);
   transform: translateY(14px) scale(.985);
@@ -475,21 +474,21 @@ onBeforeUnmount(() => {
   transition-delay: calc(var(--stagger, 0) * 75ms);
 }
 
-[data-animate-root].is-in [data-animate]{
+[data-animate-root].is-in [data-animate] {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
 }
 
-[data-animate-root].is-in [data-animate="card"]{
+[data-animate-root].is-in [data-animate="card"] {
   opacity: 1;
   transform: translateY(0) scale(1);
   filter: blur(0);
 }
 
 /* Accesibilidad */
-@media (prefers-reduced-motion: reduce){
-  [data-animate-root] [data-animate]{
+@media (prefers-reduced-motion: reduce) {
+  [data-animate-root] [data-animate] {
     transition: none !important;
     transform: none !important;
     filter: none !important;

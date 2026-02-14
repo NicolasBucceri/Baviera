@@ -290,6 +290,7 @@ onBeforeUnmount(() => {
 .baviera-work__title {
     margin: 12px 0 0;
     font-weight: 950;
+    text-transform: uppercase;
     letter-spacing: -0.02em;
     font-size: clamp(30px, 3.2vw, 46px);
     line-height: 1.05;

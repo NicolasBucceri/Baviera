@@ -52,16 +52,16 @@
 
             <!-- EMPRESA -->
             <li class="nav-item">
-              <RouterLink class="nav-link nav-link-fx" to="/#empresa">
+              <a class="nav-link nav-link-fx" href="#" @click.prevent="goRoute('/empresa')">
                 Empresa
-              </RouterLink>
+              </a>
             </li>
 
             <!-- CONTACTO -->
             <li class="nav-item">
-              <RouterLink class="nav-link nav-link-fx" to="/#contacto">
+              <a class="nav-link nav-link-fx" href="#" @click.prevent="goRoute('/contacto')">
                 Contacto
-              </RouterLink>
+              </a>
             </li>
 
           </ul>

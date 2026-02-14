@@ -23,7 +23,7 @@
           <LineaSeparador :width="'min(420px, 70%)'" :height="3" :animate="false" />
 
           <p class="baviera-subtitle">
-            DISEÑAMOS · AJUSTAMOS · INSTALAMOS
+            DISEÑAMOS · FABRICAMOS · INSTALAMOS
           </p>
         </header>
 
@@ -37,7 +37,7 @@
             <div class="card-face card-front">
               <h3 class="card-title">ABERTURAS PARA TU PRÓXIMO HOGAR</h3>
               <p class="card-desc">
-                Consultanos ahora, <strong>sin costos</strong>.
+                Presupuesto personalizado en <strong>24 horas</strong>.
               </p>
               <span class="card-hint">Contactanos por WhatsApp</span>
             </div>
@@ -59,8 +59,7 @@
             <div class="card-face card-front">
               <h3 class="card-title">ABERTURAS PARA TU PRÓXIMO DESARROLLO</h3>
               <p class="card-desc">
-                Acompañamos a desarrolladoras, constructoras y arquitectos con descuentos
-                <strong>exclusivos</strong>.
+                Descuentos <strong>exclusivos</strong> por compra en volumen para desarroladoras constructas y arquitectos.
               </p>
               <span class="card-hint">Contactanos por WhatsApp</span>
             </div>
