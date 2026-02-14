@@ -48,18 +48,18 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 /* ✅ IMPORTS */
 import VEKA from "@/assets/Marcas/VEKA.png";
 import Rehau from "@/assets/Marcas/Rehau.png";
-import Deceuninck from "@/assets/Marcas/Deceuninck.png";
-import Muchtek from "@/assets/Marcas/muchtek.png";
-import AGB from "@/assets/Marcas/AGB.png";
 import Schuco from "@/assets/Marcas/Schuco.svg";
+import tecnoperfiles from "@/assets/Marcas/tecnoperfiles.png";
+import Aluar from "@/assets/Marcas/Aluar.png";
+import MDT from "@/assets/Marcas/MDT.png";
 
 /* ✅ DATA */
 const marcas = [
   { nombre: "VEKA", logo: VEKA },
   { nombre: "REHAU", logo: Rehau },
-  { nombre: "Deceuninck", logo: Deceuninck },
-  { nombre: "Muchtek", logo: Muchtek },
-  { nombre: "AGB", logo: AGB },
+  { nombre: "MDT", logo: MDT },
+  { nombre: "Aluar", logo: Aluar },
+  { nombre: "tecnoperfiles", logo: tecnoperfiles },
   { nombre: "Schüco", logo: Schuco },
 ];
 

@@ -18,11 +18,35 @@
       <nav class="footer-nav" aria-label="Navegación">
         <h4>Navegación</h4>
         <ul>
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#galeria">Galería</a></li>
-          <li><a href="#empresa">Empresa</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li>
+            <RouterLink to="/">
+              Inicio
+            </RouterLink>
+          </li>
+
+          <li>
+            <RouterLink to="/#cotizar">
+              Servicios
+            </RouterLink>
+          </li>
+
+          <li>
+            <a href="#" @click.prevent="goRoute('/galeria')">
+              Obras
+            </a>
+          </li>
+
+          <li>
+            <a href="#" @click.prevent="goRoute('/empresa')">
+              Empresa
+            </a>
+          </li>
+
+          <li>
+            <a href="#" @click.prevent="goRoute('/contacto')">
+              Contacto
+            </a>
+          </li>
         </ul>
       </nav>
 
@@ -56,6 +80,13 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+async function goRoute(path) {
+  await router.push(path);
+}
 </script>
 
 <style scoped>
@@ -192,12 +223,10 @@
 .footer-divider {
   height: 1px;
   margin: 2.5rem 0 1.5rem;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(0, 0, 0, 0.12),
-    transparent
-  );
+  background: linear-gradient(to right,
+      transparent,
+      rgba(0, 0, 0, 0.12),
+      transparent);
 }
 
 /* COPY */

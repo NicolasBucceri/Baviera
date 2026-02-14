@@ -1,6 +1,11 @@
 <!-- src/views/Galeria.vue -->
 <template>
-  <section class="baviera-galleryPage" ref="pageRef" :class="{ 'is-visible': isVisible }" aria-label="Galería Baviera">
+  <section
+    class="baviera-galleryPage"
+    ref="pageRef"
+    :class="{ 'is-visible': isVisible }"
+    aria-label="Galería Baviera"
+  >
     <!-- HERO -->
     <header class="gp-hero">
       <div class="gp-hero__wrap">
@@ -22,18 +27,36 @@
         <!-- Controls -->
         <div class="gp-controls" role="group" aria-label="Controles de galería">
           <div class="gp-tabs" role="tablist" aria-label="Filtrar contenido">
-            <button class="gp-tab" :class="{ active: activeType === 'all' }" type="button" role="tab"
-              :aria-selected="activeType === 'all'" @click="activeType = 'all'">
+            <button
+              class="gp-tab"
+              :class="{ active: activeType === 'all' }"
+              type="button"
+              role="tab"
+              :aria-selected="activeType === 'all'"
+              @click="activeType = 'all'"
+            >
               Todo
             </button>
 
-            <button class="gp-tab" :class="{ active: activeType === 'image' }" type="button" role="tab"
-              :aria-selected="activeType === 'image'" @click="activeType = 'image'">
+            <button
+              class="gp-tab"
+              :class="{ active: activeType === 'image' }"
+              type="button"
+              role="tab"
+              :aria-selected="activeType === 'image'"
+              @click="activeType = 'image'"
+            >
               Imágenes
             </button>
 
-            <button class="gp-tab" :class="{ active: activeType === 'video' }" type="button" role="tab"
-              :aria-selected="activeType === 'video'" @click="activeType = 'video'">
+            <button
+              class="gp-tab"
+              :class="{ active: activeType === 'video' }"
+              type="button"
+              role="tab"
+              :aria-selected="activeType === 'video'"
+              @click="activeType = 'video'"
+            >
               Videos
             </button>
           </div>
@@ -47,24 +70,43 @@
     <main class="gp-main">
       <div class="gp-wrap">
         <div class="gp-metaBar">
-
           <button v-if="activeType !== 'all' || query" class="gp-clear" type="button" @click="resetFilters">
             Limpiar filtros
           </button>
         </div>
 
         <div class="gp-grid" role="list">
-          <article v-for="(item, i) in filteredItems" :key="item.id" class="gp-card" role="listitem" tabindex="0"
-            :style="{ transitionDelay: `${Math.min(i * 35, 260)}ms` }" @click="openItem(item)"
-            @keydown.enter="openItem(item)" :aria-label="item.type === 'video' ? 'Abrir video' : 'Abrir imagen'">
+          <article
+            v-for="(item, i) in filteredItems"
+            :key="item.id"
+            class="gp-card"
+            role="listitem"
+            tabindex="0"
+            :style="{ transitionDelay: `${Math.min(i * 35, 260)}ms` }"
+            @click="openItem(item)"
+            @keydown.enter="openItem(item)"
+            :aria-label="item.type === 'video' ? 'Abrir video' : 'Abrir imagen'"
+          >
             <div class="gp-media">
-              <!-- IMAGE -->
-              <img v-if="item.type === 'image'" class="gp-img" :src="item.src" alt="" loading="lazy" decoding="async" />
+              <!-- IMAGE (NO TOCAR) -->
+              <img
+                v-if="item.type === 'image'"
+                class="gp-img"
+                :src="item.src"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
 
-              <!-- VIDEO THUMB REAL (poster generado del video) -->
-              <div v-else class="gp-video">
-                <video class="gp-videoThumb" :src="item.src" :poster="item.poster" muted playsinline preload="metadata"
-                  aria-hidden="true"></video>
+              <!-- ✅ VIDEO THUMB (POSTER REAL COMO IMG) -->
+              <div v-else class="gp-video" aria-label="Vista previa de video">
+                <img
+                  class="gp-videoThumb"
+                  :src="item.poster || posterPlaceholder"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
 
                 <span class="gp-videoBadge" aria-hidden="true" title="Video">
                   <i class="fa-solid fa-play"></i>
@@ -89,11 +131,24 @@
 
       <div class="lb-shell" :class="{ 'lb-shell--open': lightboxOpen }">
         <div class="lb-media">
-          <img v-if="activeItem?.type === 'image'" :key="`${activeItem?.id}-img`" :src="activeItem?.src" alt=""
-            class="lb-img" />
+          <img
+            v-if="activeItem?.type === 'image'"
+            :key="`${activeItem?.id}-img`"
+            :src="activeItem?.src"
+            alt=""
+            class="lb-img"
+          />
 
-          <video v-else :key="`${activeItem?.id}-vid`" class="lb-video" :poster="activeItem?.poster"
-            :src="activeItem?.src" controls autoplay playsinline></video>
+          <video
+            v-else
+            :key="`${activeItem?.id}-vid`"
+            class="lb-video"
+            :poster="activeItem?.poster"
+            :src="activeItem?.src"
+            controls
+            autoplay
+            playsinline
+          ></video>
 
           <div class="lb-indicator" aria-hidden="true">
             {{ activeIndexUI }} / {{ filteredItems.length }}
@@ -127,6 +182,23 @@ const activeItem = ref(null);
 
 const activeType = ref("all"); // all | image | video
 const query = ref("");
+
+/* ✅ placeholder (no rompe layout mientras genera posters) */
+const posterPlaceholder =
+  "data:image/svg+xml;charset=utf-8," +
+  encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#0f1115"/>
+          <stop offset="1" stop-color="#171a21"/>
+        </linearGradient>
+      </defs>
+      <rect width="1600" height="1000" fill="url(#g)"/>
+      <circle cx="800" cy="500" r="64" fill="rgba(255,255,255,0.08)"/>
+      <path d="M785 470 L845 500 L785 530 Z" fill="rgba(255,255,255,0.18)"/>
+    </svg>
+  `);
 
 /* =========================================
    AUTO IMPORT (Vite) — imágenes / videos
@@ -228,7 +300,7 @@ function waitEvent(el, name) {
   });
 }
 
-async function capturePosterFromVideo(src, timeSec = 0.1) {
+async function capturePosterFromVideo(src, timeSec = 0.12) {
   if (posterCache.has(src)) return posterCache.get(src);
 
   const v = document.createElement("video");
@@ -236,13 +308,13 @@ async function capturePosterFromVideo(src, timeSec = 0.1) {
   v.muted = true;
   v.playsInline = true;
   v.preload = "metadata";
-  v.crossOrigin = "anonymous"; // por si en el futuro servís desde CDN
+  v.crossOrigin = "anonymous";
 
   await waitEvent(v, "loadedmetadata");
 
-  // elegimos un frame temprano pero no 0 exacto (a veces es negro)
-  const t = Math.min(Math.max(timeSec, 0.05), Math.max(0.05, (v.duration || 1) * 0.2));
-  v.currentTime = t;
+  // frame temprano pero evitando 0 (muchas veces negro)
+  const safeT = Math.min(Math.max(timeSec, 0.08), Math.max(0.08, (v.duration || 1) * 0.2));
+  v.currentTime = safeT;
 
   await waitEvent(v, "seeked");
 
@@ -253,13 +325,12 @@ async function capturePosterFromVideo(src, timeSec = 0.1) {
   const ctx = canvas.getContext("2d");
   ctx.drawImage(v, 0, 0, canvas.width, canvas.height);
 
-  const dataUrl = canvas.toDataURL("image/jpeg", 0.82);
+  const dataUrl = canvas.toDataURL("image/jpeg", 0.86);
   posterCache.set(src, dataUrl);
   return dataUrl;
 }
 
 async function generatePostersForVisibleVideos() {
-  // cancel anterior si existe
   abortController?.abort?.();
   abortController = new AbortController();
   const { signal } = abortController;
@@ -274,7 +345,6 @@ async function generatePostersForVisibleVideos() {
       const poster = await capturePosterFromVideo(it.src, 0.12);
       if (!signal.aborted) it.poster = poster;
     } catch {
-      // fallback: si falla, dejamos vacío (el video igual muestra algo)
       if (!signal.aborted) it.poster = "";
     }
   }
@@ -337,11 +407,10 @@ onMounted(async () => {
 
   window.addEventListener("keydown", onKey);
 
-  // ✅ genera posters reales al montar
+  // ✅ posters reales
   await generatePostersForVisibleVideos();
 });
 
-// si cambia filtro, igual te aseguras posters listos
 watch(
   () => activeType.value,
   () => {
@@ -500,9 +569,7 @@ function onKey(e) {
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.gp-tab:hover {
-  transform: translateY(-1px);
-}
+.gp-tab:hover { transform: translateY(-1px); }
 
 .gp-tab.active {
   background: rgba(15, 17, 21, 0.90);
@@ -511,9 +578,7 @@ function onKey(e) {
 }
 
 /* MAIN */
-.gp-main {
-  padding: 1.4rem 0 4.8rem;
-}
+.gp-main { padding: 1.4rem 0 4.8rem; }
 
 .gp-wrap {
   max-width: 1200px;
@@ -528,11 +593,6 @@ function onKey(e) {
   gap: 1rem;
   margin: 0.65rem 0 1rem;
   flex-wrap: wrap;
-}
-
-.gp-count {
-  color: var(--muted);
-  font-size: 0.95rem;
 }
 
 .gp-clear {
@@ -589,7 +649,7 @@ function onKey(e) {
   overflow: hidden;
 }
 
-/* img */
+/* img (NO TOCAR) */
 .gp-img {
   width: 100%;
   height: 100%;
@@ -598,15 +658,23 @@ function onKey(e) {
   transition: transform 0.55s ease, filter 0.55s ease;
 }
 
-/* ✅ video thumb: que se vea COMO imagen */
+/* ✅ VIDEO THUMB: legible, sin recorte */
+.gp-video { width: 100%; height: 100%; }
+
 .gp-videoThumb {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
-  transform: scale(1.02);
+
+  /* clave: mostrar más contenido */
+  object-fit: contain;
+
+  /* para que el letterbox se vea premium */
+  background: #0f1115;
+
+  transform: scale(1.0);
+  transition: transform 0.55s ease;
   pointer-events: none;
-  /* no roba click */
 }
 
 /* overlays */
@@ -634,23 +702,16 @@ function onKey(e) {
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.12);
 }
 
-.gp-card:hover .gp-img,
-.gp-card:hover .gp-videoThumb {
-  transform: scale(1.06);
-}
+.gp-card:hover .gp-img { transform: scale(1.06); }
 
-.gp-card:hover .gp-overlay {
-  opacity: 0.92;
-}
+/* en video también micro “zoom”, pero menos para no perder info */
+.gp-card:hover .gp-videoThumb { transform: scale(1.03); }
 
-.gp-card:hover .gp-glow {
-  opacity: 1;
-}
+.gp-card:hover .gp-overlay { opacity: 0.92; }
+.gp-card:hover .gp-glow { opacity: 1; }
 
 /* sin texto */
-.gp-info {
-  display: none !important;
-}
+.gp-info { display: none !important; }
 
 /* video badge */
 .gp-videoBadge {
@@ -788,13 +849,8 @@ function onKey(e) {
   background: rgba(15, 17, 21, 0.72);
 }
 
-.lb-nav--prev {
-  left: 14px;
-}
-
-.lb-nav--next {
-  right: 14px;
-}
+.lb-nav--prev { left: 14px; }
+.lb-nav--next { right: 14px; }
 
 .lb-flagLine {
   height: 5px;
@@ -804,34 +860,17 @@ function onKey(e) {
 
 /* Responsive */
 @media (max-width: 992px) {
-  .gp-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  .gp-card {
-    grid-column: span 6;
-  }
+  .gp-grid { grid-template-columns: repeat(6, 1fr); }
+  .gp-card { grid-column: span 6; }
 }
 
 @media (max-width: 600px) {
-  .gp-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .gp-tabs {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .lb-nav {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-  }
+  .gp-grid { grid-template-columns: 1fr; }
+  .gp-tabs { width: 100%; justify-content: space-between; }
+  .lb-nav { width: 44px; height: 44px; border-radius: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-
   .gp-card,
   .lb-shell,
   .gp-img,
