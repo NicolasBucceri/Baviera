@@ -105,11 +105,12 @@ import { onMounted, onBeforeUnmount, ref } from "vue";
 import banner1 from "@/assets/ImgCarruselHero/Img1.png";
 import banner2 from "@/assets/ImgCarruselHero/Img2.png";
 import banner3 from "@/assets/ImgCarruselHero/Img3.png";
-import banner4 from "@/assets/ImgCarruselHero/Img4.png";
+import banner4 from "@/assets/ImgCarruselHero/Img4.jpg";
 import banner5 from "@/assets/ImgCarruselHero/Img5.png";
 import banner6 from "@/assets/ImgCarruselHero/Img6.png";
 import banner7 from "@/assets/ImgCarruselHero/Img7.png";
 import banner8 from "@/assets/ImgCarruselHero/Img8.png";
+
 
 const irASeccion = (id) => {
   const el = document.getElementById(id);
