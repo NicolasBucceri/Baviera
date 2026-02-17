@@ -88,7 +88,7 @@ import PRIME from "@/assets/Texturas/PVC/PRIME.png";
 
 import A40 from "@/assets/Texturas/Aluminio/A40.png";
 import A30 from "@/assets/Texturas/Aluminio/A30.png";
-import VESTA from "@/assets/Texturas/Aluminio/VESTA.png";
+import AltezzaRPT from "@/assets/Texturas/Aluminio/AltezzaRPT.png";
 import MODENA from "@/assets/Texturas/Aluminio/MODENA.png";
 
 const pvcItems = [
@@ -116,22 +116,22 @@ const pvcItems = [
 
 const aluminioItems = [
   {
-    nombre: "A40",
-    img: A40,
-    desc: "Estética limpia y gran resistencia. Ideal para fachadas modernas.",
+    nombre: "Altezza RPT",
+    img: AltezzaRPT,
+    desc: "Máxima apertura y eficiencia. Ideal para espacios amplios y alto confort.",
   },
   {
+    nombre: "A40",
+    img: A40,
+    desc: "Mayor resistencia y estabilidad. Ideal para aberturas amplias y exigentes.",
+  },  {
     nombre: "A30",
     img: A30,
-    desc: "Perfil con presencia y performance. Para proyectos que piden durabilidad.",
-  },  {
-    nombre: "VESTA",
-    img: VESTA,
-    desc: "Perfil con presencia y performance. Para proyectos que piden durabilidad.",
+    desc: "Versátil y funcional. Equilibrio perfecto entre costo, rendimiento y diseño",
   },  {
     nombre: "MODENA",
     img: MODENA,
-    desc: "Perfil con presencia y performance. Para proyectos que piden durabilidad.",
+    desc: "Diseño moderno y práctico. Ideal para proyectos residenciales y funcionales.",
   },
 ];
 

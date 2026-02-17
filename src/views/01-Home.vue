@@ -1,11 +1,12 @@
 <template>
   <Hero />
   <Cotizar :slides="slidesCotizar" />
+  <Tendencias />
   <Texturas />
   <LineaProductos />
   <Beneficios />
   <ComoTrabajamos />
-  <Obras /> 
+  <Obras />
   <Marcas /> 
 </template>
 
@@ -18,6 +19,8 @@ import Beneficios from "@/views/06-Beneficios.vue"
 import ComoTrabajamos from "@/views/07-ComoTrabajamos.vue"
 import Obras from "@/views/08-Obras.vue"
 import Marcas from "@/views/09-Marcas.vue"
+
+import Tendencias from "@/components/Tendencias.vue"
 
 
 // Importás assets (Vite los transforma a URL real)

@@ -88,11 +88,6 @@
           <span class="hero-subline reveal reveal--4">PVC / ALUMINIO</span>
         </h1>
 
-        <div class="hero-actions reveal reveal--5">
-          <button class="btn-hero btn-hero--primary" type="button" @click="irAContacto">
-            CONSULTANOS <span class="btn-hero__arrow" aria-hidden="true">→</span>
-          </button>
-        </div>
       </div>
     </div>
 

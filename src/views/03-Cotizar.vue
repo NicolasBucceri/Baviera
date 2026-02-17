@@ -46,7 +46,7 @@
               <h3 class="card-title">ABERTURAS PARA TU PRÓXIMO HOGAR</h3>
               <p class="panel-copy">
                 Te asesoramos con medidas, sistema recomendado y coordinación de
-                instalación. Proceso simple, prolijo y rápido.
+                instalación.
               </p>
             </div>
           </article>
@@ -708,6 +708,7 @@ export default {
 .card-desc {
   margin: 0;
   opacity: 0.9;
+  font-size: 18px;
   line-height: 1.45;
   max-width: 52ch;
   color: rgba(255, 255, 255, 0.88);

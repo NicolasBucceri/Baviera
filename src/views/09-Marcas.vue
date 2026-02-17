@@ -1,11 +1,6 @@
 <template>
-  <section
-    class="brands-section"
-    ref="sectionRef"
-    :class="{ 'is-visible': isVisible }"
-    id="marcas"
-    aria-label="Marcas con las que trabajamos"
-  >
+  <section class="brands-section" ref="sectionRef" :class="{ 'is-visible': isVisible }" id="marcas"
+    aria-label="Marcas con las que trabajamos">
     <div class="brands-container">
       <!-- TEXTO IZQUIERDA -->
       <div class="brands-text">
@@ -27,16 +22,9 @@
 
       <!-- LOGOS DERECHA (solo logo, sin contenedor, sin texto) -->
       <div class="brands-logos" aria-label="Logos de marcas">
-        <img
-          v-for="(brand, i) in marcas"
-          :key="brand.nombre"
-          class="brand-logo"
-          :style="{ transitionDelay: `${i * 80}ms` }"
-          :src="brand.logo"
-          :alt="brand.nombre"
-          loading="lazy"
-          decoding="async"
-        />
+        <img v-for="(brand, i) in marcas" :key="brand.nombre" class="brand-logo"
+          :style="{ transitionDelay: `${i * 80}ms` }" :src="brand.logo" :alt="brand.nombre" loading="lazy"
+          decoding="async" />
       </div>
     </div>
   </section>
@@ -46,8 +34,6 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
 /* ✅ IMPORTS */
-import VEKA from "@/assets/Marcas/VEKA.png";
-import Rehau from "@/assets/Marcas/Rehau.png";
 import Schuco from "@/assets/Marcas/Schuco.svg";
 import tecnoperfiles from "@/assets/Marcas/tecnoperfiles.png";
 import Aluar from "@/assets/Marcas/Aluar.png";
@@ -55,8 +41,6 @@ import MDT from "@/assets/Marcas/MDT.png";
 
 /* ✅ DATA */
 const marcas = [
-  { nombre: "VEKA", logo: VEKA },
-  { nombre: "REHAU", logo: Rehau },
   { nombre: "MDT", logo: MDT },
   { nombre: "Aluar", logo: Aluar },
   { nombre: "tecnoperfiles", logo: tecnoperfiles },
@@ -136,13 +120,11 @@ onBeforeUnmount(() => {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(15, 17, 21, 0.06),
-    transparent 22%,
-    transparent 78%,
-    rgba(15, 17, 21, 0.06)
-  );
+  background: linear-gradient(90deg,
+      rgba(15, 17, 21, 0.06),
+      transparent 22%,
+      transparent 78%,
+      rgba(15, 17, 21, 0.06));
   pointer-events: none;
   z-index: -1;
 }
@@ -252,7 +234,8 @@ onBeforeUnmount(() => {
 /* ✅ Solo el logo, sin card */
 .brand-logo {
   width: min(260px, 100%);
-  height: 74px;              /* altura uniforme */
+  height: 74px;
+  /* altura uniforme */
   object-fit: contain;
   object-position: center;
 
@@ -317,6 +300,7 @@ onBeforeUnmount(() => {
 
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   .brands-text,
   .brands-divider,
   .brands-logos,
