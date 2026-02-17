@@ -132,7 +132,7 @@
 
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
-import VentanaImg from "@/assets/Ventana.png";
+import VentanaImg from "@/assets/ventana.png";
 
 const visualRef = ref(null);
 const activeHotspotId = ref(null);
