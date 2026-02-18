@@ -205,7 +205,7 @@ import { onMounted, onBeforeUnmount, ref } from "vue";
 import LineaSeparador from "@/components/LineaSeparador.vue";
 
 /** Assets */
-import heroImg from "@/assets/Empresa/Img1.png";
+import heroImg from "@/assets/Empresa/Img1.webp";
 import videoProceso from "@/assets/Empresa/Video1.mp4";
 import videoServicios from "@/assets/Empresa/Video2.mp4";
 

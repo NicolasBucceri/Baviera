@@ -45,10 +45,10 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, nextTick } from "vue";
 
-import Img1 from "@/assets/ImgCarruselObras/Img1.jpg";
-import Img2 from "@/assets/ImgCarruselObras/Img1.jpg";
-import Img3 from "@/assets/ImgCarruselObras/Img1.jpg";
-import Img4 from "@/assets/ImgCarruselObras/Img1.jpg";
+import Img1 from "@/assets/ImgCarruselObras/Img1.webp";
+import Img2 from "@/assets/ImgCarruselObras/Img1.webp";
+import Img3 from "@/assets/ImgCarruselObras/Img1.webp";
+import Img4 from "@/assets/ImgCarruselObras/Img1.webp";
 
 import LineaSeparador from "@/components/LineaSeparador.vue";
 

@@ -414,28 +414,6 @@ onBeforeUnmount(() => {
   overflow: hidden;
 }
 
-/* Responsive */
-@media (max-width: 576px) {
-  .baviera-tabs {
-    justify-content: flex-start;
-    overflow-x: auto;
-    padding-bottom: 6px;
-  }
-
-  .baviera-tabs .nav-link {
-    white-space: nowrap;
-  }
-
-  .baviera-card--neo {
-    min-height: 390px;
-  }
-
-  .baviera-card--neo .baviera-card__media,
-  .baviera-card--neo .baviera-card__media2 {
-    height: 240px;
-  }
-}
-
 /* =========================================================
    ANIMACIONES ON-SCROLL (premium, sin librerías)
    - Head + Tabs + Content
@@ -495,4 +473,93 @@ onBeforeUnmount(() => {
     opacity: 1 !important;
   }
 }
+
+/* =========================================
+   FIX MOBILE: imagen más chica y sin tapar texto
+   (solo responsive, desktop no se toca)
+========================================= */
+
+/* Mobile grande / tablet chica */
+@media (max-width: 768px) {
+  /* Card un toque más baja para balance */
+  .baviera-card--neo {
+    min-height: 320px;
+  }
+
+  /* El área de imagen: más chica */
+  .baviera-card--neo .baviera-card__media,
+  .baviera-card--neo .baviera-card__media2 {
+    height: 185px;                 /* antes 220 */
+    padding: 14px 14px 6px;        /* menos padding = más aire */
+  }
+
+  /* Imagen: NO ocupa todo el contenedor, se limita */
+  .baviera-card--neo .baviera-card__media img,
+  .baviera-card--neo .baviera-card__media2 img {
+    width: 100%;
+    height: auto;                  /* clave */
+    max-height: 165px;             /* evita que se coma el body */
+    margin-top: -4%;               /* menos “subida” */
+    object-fit: contain;
+  }
+
+  /* Body: un poco más compacto */
+  .baviera-card--neo .baviera-card__body {
+    padding: 12px 14px 16px;
+    gap: 8px;
+    justify-content: flex-start;   /* evita que empuje raro */
+  }
+
+  .baviera-card__text {
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .baviera-card--neo {
+    min-height: 305px;
+  }
+
+  .baviera-card--neo .baviera-card__media,
+  .baviera-card--neo .baviera-card__media2 {
+    height: 170px;
+    padding: 12px 12px 6px;
+  }
+
+  .baviera-card--neo .baviera-card__media img,
+  .baviera-card--neo .baviera-card__media2 img {
+    max-height: 150px;
+    margin-top: -2%;
+  }
+
+  .baviera-card__title {
+    font-size: 0.98rem;
+  }
+
+  .baviera-card__text {
+    font-size: 0.93rem;
+    max-width: 32ch;
+  }
+}
+
+/* Mobile chico */
+@media (max-width: 420px) {
+  .baviera-card--neo {
+    min-height: 295px;
+  }
+
+  .baviera-card--neo .baviera-card__media,
+  .baviera-card--neo .baviera-card__media2 {
+    height: 155px;
+  }
+
+  .baviera-card--neo .baviera-card__media img,
+  .baviera-card--neo .baviera-card__media2 img {
+    max-height: 135px;
+    margin-top: 0;                 /* ya no la subimos */
+  }
+}
+
+
 </style>

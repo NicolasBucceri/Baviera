@@ -176,24 +176,224 @@ const videoSrc = videoFile;
     pointer-events: none;
 }
 
-/* ==============================
-   Responsive
-   ============================== */
-@media (max-width: 960px) {
-    .td-grid {
-        grid-template-columns: 1fr;
-        gap: 22px;
-    }
+/* =========================================
+   RESPONSIVE ONLY (NO DESKTOP CHANGES)
+   Cotizar — Tablet + Mobile
+   ✅ En mobile/tablet: cada card usa su propia imagen (arriba/abajo)
+========================================= */
 
-    .td-copy::after {
-        display: none;
-    }
+/* ✅ Tablet (≤1024px) */
+@media (max-width: 1024px) {
+  .baviera-cotizar-section {
+    min-height: auto; /* evita “pantalla vacía” */
+  }
 
-    .td-media__box {
-        width: 100%;
-        margin-left: 0;
-        aspect-ratio: 16 / 10;
-        /* en mobile queda más “cinematic” y usable */
-    }
+  .baviera-cotizar-content {
+    padding: clamp(52px, 8vw, 90px) 0;
+  }
+
+  .baviera-wrap {
+    width: min(980px, 100%);
+    padding: clamp(2.2rem, 4.8vw, 3.4rem) clamp(1rem, 4vw, 2rem);
+  }
+
+  .baviera-head {
+    margin-bottom: clamp(1rem, 2.2vw, 1.4rem);
+  }
+
+  .baviera-title {
+    font-size: clamp(1.85rem, 3.6vw, 2.9rem);
+    letter-spacing: 0.1em;
+  }
+
+  .baviera-subtitle {
+    font-size: 0.88rem;
+    letter-spacing: 0.26em;
+    padding-bottom: 0.7rem;
+  }
+
+  /* Grid: dos columnas más controladas */
+  .baviera-grid {
+    grid-template-columns: repeat(2, minmax(0, 420px));
+    gap: clamp(1.4rem, 4.8vw, 2.6rem);
+    margin-top: clamp(1.6rem, 3.8vw, 2.2rem);
+  }
+
+  .baviera-card {
+    min-height: 300px;
+    border-radius: 24px;
+  }
+
+  .card-face {
+    padding: 1.5rem 1.4rem;
+    gap: 0.75rem;
+  }
+
+  .card-desc {
+    font-size: 16px;
+  }
+
+  .panel-copy {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
+
+/* ✅ Tablet chica / Mobile grande (≤900px) */
+/* =========================================
+   TENDENCIAS — MOBILE: texto arriba, video abajo
+   (NO toca desktop)
+========================================= */
+
+@media (max-width: 900px) {
+  /* 1 columna */
+  .td-grid{
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    align-items: start !important;
+  }
+
+  /* ✅ Centrado real del bloque de texto */
+  .td-copy{
+    order: 1;
+    text-align: center;
+    padding: 0 !important;
+  }
+
+  /* Sacamos el divisor vertical en mobile */
+  .td-copy::after{
+    display: none !important;
+  }
+
+  /* Kicker centrado */
+  .td-kicker{
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  /* Título centrado (sin romper palabras raro) */
+  .td-title{
+    margin: 0 auto 12px;
+    max-width: 22ch;     /* para que quede estético */
+    line-height: 1.06;
+    text-wrap: balance;  /* si el navegador lo soporta, queda chef kiss */
+  }
+
+  /* Texto centrado y contenido */
+  .td-text{
+    margin: 0 auto;
+    max-width: 46ch;
+    line-height: 1.65;
+  }
+
+  /* Video abajo y centrado */
+  .td-media{
+    order: 2;
+    padding: 0 !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  .td-media__box{
+    width: 100% !important;
+    margin: 0 auto !important;
+    max-width: 520px;   /* control pro */
+    aspect-ratio: 4 / 5;
+    border-radius: 18px;
+  }
+}
+
+/* ✅ Mobile (≤768px) */
+@media (max-width: 768px) {
+  .baviera-title {
+    font-size: clamp(1.55rem, 5.2vw, 2.15rem);
+    letter-spacing: 0.09em;
+  }
+
+  .baviera-subtitle {
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
+  }
+
+  .baviera-card {
+    border-radius: 22px;
+    min-height: 260px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Ring menos invasivo */
+  .baviera-card::after {
+    inset: -14px;
+    opacity: 0.42;
+  }
+
+  .baviera-card::before {
+    inset: 12px;
+    border-radius: 18px;
+  }
+
+  .card-face {
+    padding: 1.25rem 1.1rem;
+  }
+
+  .card-title {
+    font-size: 0.98rem;
+    letter-spacing: 0.12em;
+    max-width: 24ch;
+  }
+
+  .card-desc {
+    font-size: 15px;
+    line-height: 1.42;
+    max-width: 46ch;
+  }
+
+  .card-hint {
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+  }
+
+  .panel-copy {
+    font-size: 14px;
+    max-width: 48ch;
+  }
+}
+
+/* Mobile chico */
+@media (max-width: 520px){
+  .td-title{
+    max-width: 20ch;
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+  }
+  .td-text{
+    max-width: 42ch;
+    font-size: 0.95rem;
+  }
+  .td-media__box{
+    border-radius: 16px;
+  }
+}
+
+
+
+/* ✅ Touch: evitamos hover fantasma */
+@media (hover: none) and (pointer: coarse) {
+  .baviera-card:hover {
+    transform: none !important;
+    box-shadow: 0 30px 110px rgba(0, 0, 0, 0.7) !important;
+    border-color: rgba(255, 255, 255, 0.14) !important;
+  }
+}
+
+/* ✅ Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .baviera-card,
+  .card-back,
+  .baviera-card .card-front::before,
+  .baviera-card::after {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 </style>

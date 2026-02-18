@@ -102,14 +102,14 @@
 
 <script setup>
 import { onMounted, onBeforeUnmount, ref } from "vue";
-import banner1 from "@/assets/ImgCarruselHero/Img1.png";
-import banner2 from "@/assets/ImgCarruselHero/Img2.png";
-import banner3 from "@/assets/ImgCarruselHero/Img3.png";
-import banner4 from "@/assets/ImgCarruselHero/Img4.jpg";
-import banner5 from "@/assets/ImgCarruselHero/Img5.png";
-import banner6 from "@/assets/ImgCarruselHero/Img6.png";
-import banner7 from "@/assets/ImgCarruselHero/Img7.png";
-import banner8 from "@/assets/ImgCarruselHero/Img8.png";
+import banner1 from "@/assets/ImgCarruselHero/Img1.webp";
+import banner2 from "@/assets/ImgCarruselHero/Img2.webp";
+import banner3 from "@/assets/ImgCarruselHero/Img3.webp";
+import banner4 from "@/assets/ImgCarruselHero/Img4.webp";
+import banner5 from "@/assets/ImgCarruselHero/Img5.webp";
+import banner6 from "@/assets/ImgCarruselHero/Img6.webp";
+import banner7 from "@/assets/ImgCarruselHero/Img7.webp";
+import banner8 from "@/assets/ImgCarruselHero/Img8.webp";
 
 
 const irASeccion = (id) => {
@@ -652,26 +652,178 @@ onBeforeUnmount(() => {
   }
 }
 
-/* Responsive fallback */
-@media (max-width: 520px) {
-  .hero-headline {
+/* =========================================
+   RESPONSIVE ONLY (NO DESKTOP CHANGES)
+   Tablet + Mobile
+========================================= */
+
+/* ✅ Tablet (iPad y similares) */
+@media (max-width: 1024px) {
+  .hero-content{
+    padding-top: calc(var(--nav-h) + 6px);
+  }
+
+  .hero-inner{
+    width: min(900px, 94vw);
+    padding: 0 18px;
+  }
+
+  .hero-title{
+    gap: 12px;
+    margin: 0 0 22px;
+  }
+
+  /* Ajuste fino de lectura en tablet */
+  .hero-kicker{
+    letter-spacing: 0.34em;
+  }
+
+  .hero-headline{
+    /* sigue en una línea casi siempre, pero con menos agresividad */
+    font-size: clamp(2.2rem, 1.25rem + 4vw, 4.2rem);
+    letter-spacing: 0.10em;
+  }
+
+  .hero-subline{
+    letter-spacing: 0.26em;
+    font-size: clamp(0.92rem, 0.84rem + 0.35vw, 1.12rem);
+  }
+
+  /* Más aire abajo en pantallas medias */
+  .scroll-indicator{
+    bottom: 16px;
+    transform: translateX(-50%) scale(.96);
+  }
+
+  /* Performance: blur un toque menos en tablet */
+  .reveal{
+    filter: blur(5px);
+  }
+
+  /* Capa de luces más sutil */
+  .hero-lights{
+    opacity: .45;
+  }
+}
+
+/* ✅ Mobile general */
+@media (max-width: 768px) {
+  .hero-baviera{
+    /* evita saltos raros en mobile con vh */
+    height: 100svh;
+  }
+
+  .hero-content{
+    padding-top: calc(var(--nav-h) + 10px);
+    place-items: center;
+  }
+
+  .hero-inner{
+    width: min(680px, 92vw);
+    padding: 0 14px;
+    transform: translateY(10px) scale(.995);
+  }
+
+  .hero-title{
+    gap: 10px;
+    margin: 0 0 18px;
+    line-height: 1;
+  }
+
+  .hero-kicker{
+    font-size: 0.88rem;
+    letter-spacing: 0.30em;
+  }
+
+  .hero-headline{
+    /* en mobile permitimos wrap */
     white-space: normal;
-    line-height: 0.95;
+    line-height: 0.92;
+    letter-spacing: 0.08em;
+    font-size: clamp(2.05rem, 1.25rem + 4.4vw, 3.2rem);
+    animation: none; /* mobile: menos costo visual/perf */
   }
 
-  .hero-brandline {
-    width: min(420px, 74vw);
+  .hero-brandline{
+    width: min(420px, 78vw);
   }
 
-  .btn-hero {
-    min-width: 210px;
-    height: 52px;
-    padding: 0 22px;
+  .hero-subline{
+    font-size: 0.98rem;
+    letter-spacing: 0.22em;
   }
 
-  /* en mobile bajamos un toque la capa de luces */
-  .hero-lights {
-    opacity: .38;
+  /* Scroll indicator: más chico y con safe-area */
+  .scroll-indicator{
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    width: 40px;
+    height: 56px;
+    padding-top: 9px;
+  }
+
+  .scroll-indicator__chev{
+    margin-bottom: 9px;
+  }
+
+  /* Luces más suaves en mobile */
+  .hero-lights{
+    opacity: .34;
+    filter: blur(1.5px);
+  }
+
+  /* Reveal: menos blur para que se lea rápido */
+  .reveal{
+    filter: blur(3.5px);
+    transform: translateY(8px);
+  }
+
+  /* Fondo: bajar un toque el contraste para legibilidad en pantallas chicas */
+  .hero-slide{
+    filter: saturate(1.04) contrast(1.06);
+  }
+}
+
+/* ✅ Mobile chico (tipo 360–420) */
+@media (max-width: 480px) {
+  .hero-inner{
+    width: 94vw;
+    padding: 0 10px;
+  }
+
+  .hero-kicker{
+    font-size: 0.82rem;
+    letter-spacing: 0.26em;
+  }
+
+  .hero-headline{
+    font-size: clamp(1.85rem, 1.1rem + 4.6vw, 2.7rem);
+    letter-spacing: 0.06em;
+  }
+
+  .hero-subline{
+    font-size: 0.90rem;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-brandline{
+    width: min(360px, 80vw);
+    height: 2px;
+  }
+
+  /* el botón no debe tapar contenido en pantallas bajas */
+  .scroll-indicator{
+    transform: translateX(-50%) scale(.92);
+  }
+}
+
+/* ✅ Pantallas bajas (celulares “chatitos”) */
+@media (max-height: 700px) and (max-width: 768px) {
+  .hero-title{
+    gap: 8px;
+  }
+
+  .scroll-indicator{
+    display: none; /* en pantallas bajas, prioriza contenido */
   }
 }
 </style>

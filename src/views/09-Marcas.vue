@@ -22,9 +22,19 @@
 
       <!-- LOGOS DERECHA (solo logo, sin contenedor, sin texto) -->
       <div class="brands-logos" aria-label="Logos de marcas">
-        <img v-for="(brand, i) in marcas" :key="brand.nombre" class="brand-logo"
-          :style="{ transitionDelay: `${i * 80}ms` }" :src="brand.logo" :alt="brand.nombre" loading="lazy"
-          decoding="async" />
+        <img
+  v-for="(brand, i) in marcas"
+  :key="brand.nombre"
+  class="brand-logo"
+  :style="{
+    transitionDelay: `${i * 80}ms`,
+    '--logo-scale': brand.scale ?? 1
+  }"
+  :src="brand.logo"
+  :alt="brand.nombre"
+  loading="lazy"
+  decoding="async"
+/>
       </div>
     </div>
   </section>
@@ -34,17 +44,17 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
 /* ✅ IMPORTS */
-import Schuco from "@/assets/Marcas/Schuco.svg";
-import tecnoperfiles from "@/assets/Marcas/tecnoperfiles.png";
+import Schuco from "@/assets/Marcas/Schuco.png";
+import tecnoperfiles from "@/assets/Marcas/muchtek.webp";
 import Aluar from "@/assets/Marcas/Aluar.png";
 import MDT from "@/assets/Marcas/MDT.png";
 
 /* ✅ DATA */
 const marcas = [
-  { nombre: "MDT", logo: MDT },
-  { nombre: "Aluar", logo: Aluar },
-  { nombre: "tecnoperfiles", logo: tecnoperfiles },
-  { nombre: "Schüco", logo: Schuco },
+  { nombre: "MDT", logo: MDT, scale: 1.22 },     // 👈 agrandamos MDT
+  { nombre: "Aluar", logo: Aluar, scale: 1.00 },
+  { nombre: "tecnoperfiles", logo: tecnoperfiles, scale: 1.00 },
+  { nombre: "Schüco", logo: Schuco, scale: 1.00 },
 ];
 
 const sectionRef = ref(null);
@@ -72,11 +82,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-/* ===============================
-   BAVIERA — MARCAS (solo logos)
-   - Mismo fondo Baviera
-   - Sin cards / sin captions
-   =============================== */
 
 .brands-section {
   /* Tokens */
@@ -103,7 +108,7 @@ onBeforeUnmount(() => {
   isolation: isolate;
 }
 
-/* Fondo ambiental sutil (igual que venías usando) */
+/* Fondo ambiental sutil */
 .brands-section::before {
   content: "";
   position: absolute;
@@ -120,11 +125,13 @@ onBeforeUnmount(() => {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg,
-      rgba(15, 17, 21, 0.06),
-      transparent 22%,
-      transparent 78%,
-      rgba(15, 17, 21, 0.06));
+  background: linear-gradient(
+    90deg,
+    rgba(15, 17, 21, 0.06),
+    transparent 22%,
+    transparent 78%,
+    rgba(15, 17, 21, 0.06)
+  );
   pointer-events: none;
   z-index: -1;
 }
@@ -214,6 +221,7 @@ onBeforeUnmount(() => {
 
 .brands-logos {
   --min: 170px;
+
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
   gap: 2.2rem 2.8rem;
@@ -231,33 +239,30 @@ onBeforeUnmount(() => {
   transition-delay: 0.22s;
 }
 
-/* ✅ Solo el logo, sin card */
-.brand-logo {
+/* ✅ Solo el logo, sin card (con escala por marca) */
+.brand-logo{
   width: min(260px, 100%);
   height: 74px;
-  /* altura uniforme */
   object-fit: contain;
   object-position: center;
 
-  /* entrada */
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(14px) scale(var(--logo-scale, 1));
   transition: opacity 0.65s ease, transform 0.65s ease, filter 0.25s ease;
   will-change: transform, opacity;
 
-  /* look */
   filter: saturate(1.02) contrast(1.05);
 }
 
-.brands-section.is-visible .brand-logo {
+.brands-section.is-visible .brand-logo{
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(var(--logo-scale, 1));
 }
 
-/* hover sutil (sin contenedor) */
-.brand-logo:hover {
-  transform: translateY(-4px) scale(1.03);
-  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.14)) saturate(1.08) contrast(1.08);
+/* hover sutil (manteniendo escala individual) */
+.brand-logo:hover{
+  transform: translateY(-4px) scale(calc(var(--logo-scale, 1) * 1.03));
+  filter: drop-shadow(0 16px 32px rgba(0,0,0,.14)) saturate(1.08) contrast(1.08);
 }
 
 /* ================= RESPONSIVE ================= */
@@ -300,7 +305,6 @@ onBeforeUnmount(() => {
 
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
-
   .brands-text,
   .brands-divider,
   .brands-logos,
