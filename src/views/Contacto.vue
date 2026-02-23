@@ -64,8 +64,10 @@
         <h2 class="bv-card__title">Mapa</h2>
 
         <div class="bv-mapWrap">
-          <iframe class="bv-map" :src="mapEmbedSrc" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            aria-label="Mapa de Baviera"></iframe>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26273.143500920523!2d-58.51323264999999!3d-34.6005469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb7d17aecb4c5%3A0x2ec18aeefab8400!2sVilla%20Devoto%2C%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1771593260613!5m2!1ses!2sar"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
           <div class="bv-mapOverlay" aria-hidden="true"></div>
         </div>
 
@@ -84,8 +86,8 @@ import LineaSeparador from "@/components/LineaSeparador.vue";
 /* ====== PLACEHOLDERS (cambiás cuando te pasen datos) ====== */
 const whatsNumber = "5491111111111"; // placeholder (sin +, sin espacios)
 const email = "contacto@baviera.com.ar"; // placeholder
-const address = "CABA / Zona a confirmar"; // placeholder
-const hours = "Lun a Vie · 9:00 a 18:00"; // placeholder
+const address = "CABA / Villa Devoto"; // placeholder
+const hours = "Lun a Vie · 9:00 a 17:00"; // placeholder
 
 // link a Maps (placeholder)
 const mapsLink = "https://www.google.com/maps";

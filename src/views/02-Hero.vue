@@ -103,7 +103,7 @@
 <script setup>
 import { onMounted, onBeforeUnmount, ref } from "vue";
 import banner1 from "@/assets/ImgCarruselHero/Img1.webp";
-import banner2 from "@/assets/ImgCarruselHero/Img2.webp";
+import banner2 from "@/assets/ImgCarruselHero/Img2.png";
 import banner3 from "@/assets/ImgCarruselHero/Img3.webp";
 import banner4 from "@/assets/ImgCarruselHero/Img4.webp";
 import banner5 from "@/assets/ImgCarruselHero/Img5.webp";
